@@ -4,9 +4,24 @@ import utils.Transaction;
 
 public class Client {
 
-    private int balance; // The current account balance.
+    /**
+     * Current client balance, which we use to do transaction in the bank
+     */
+    private int balance;
+
+    /**
+     * Time how clerk wait while do transaction
+     */
     private int timeMS;
-    private String accountNumber;
+
+    /**
+     * Client number
+     */
+    private String clientNumber;
+
+    /**
+     * Client transaction type
+     */
     private Transaction ts;
 
     /**
@@ -14,18 +29,17 @@ public class Client {
      * @param balance the initial balance
      * @param ts transaction
      * @param timeMS waiting time in ms
-     * @param accountNumber account number
+     * @param clientNumber account number
      */
-    public Client(int balance, Transaction ts, int timeMS,  String accountNumber) {
+    public Client(int balance, Transaction ts, int timeMS,  String clientNumber) {
         this.balance = balance;
         this.ts = ts;
         this.timeMS = timeMS;
-        this.accountNumber = accountNumber;
+        this.clientNumber = clientNumber;
     }
 
     /**
-     *
-     * @return the transaction balance
+     * @return current client balance, which we use to do transaction in the bank
      */
     public int getBalance() {
         return balance;
@@ -33,7 +47,6 @@ public class Client {
     }
 
     /**
-     *
      * @return waiting time
      */
     public int getTimeMS() {
@@ -45,6 +58,6 @@ public class Client {
     }
 
     public String toString() {
-        return "A//C No. " + accountNumber + " : $" + balance;
+        return "No. " + clientNumber + " : $" + balance;
     }
 }

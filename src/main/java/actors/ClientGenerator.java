@@ -17,6 +17,7 @@ public class ClientGenerator implements Runnable {
     /**
      * Generate clients with operation type, balance, and the time which use Clerk
      */
+    @Override
     synchronized public void run(){
         Random random = new Random();
         int number = 0;
@@ -47,7 +48,7 @@ public class ClientGenerator implements Runnable {
             clerk.addClient(newClient);
 
             // Print thread name
-            System.out.println(Thread.currentThread().getName());
+            System.out.println("CLEINT -> " + clerk.toString() + "\n");
 
             // Wait 5 sec
             try {
