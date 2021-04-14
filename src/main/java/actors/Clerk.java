@@ -18,8 +18,12 @@ public class Clerk implements Runnable {
 
             // If no clients in queue
             synchronized (clientList) {
-                while (clientList.isEmpty()) {
-                    Thread.yield();
+                if (clientList.isEmpty()) {
+                    try {
+                        clientList.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 Client currentClient = clientList.get(0);
@@ -107,7 +111,10 @@ public class Clerk implements Runnable {
      * @param client will added to this clerk queue
      */
     public void addClient(Client client) {
-        clientList.add(client);
+        synchronized (clientList) {
+            clientList.add(client);
+            clientList.notify();
+        }
     }
 
     @Override
